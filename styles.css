@@ -1,9 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
 :root {
-    --primary-color: #dad0c6;
-    --background-color: #f9f5f0;
-    --dark-color: #151515;
+    --primary-color: #535C91;
+    --background-color: #9290C3;
+    --dark-color: #070F2B;
 }
 
 html {
@@ -21,8 +21,8 @@ html {
 /*             UTILIDADES             */
 /* ********************************** */
 .container {
-    max-width: 120rem;
-    margin: 0 auto;
+    /* max-width: 120rem; */
+    /* margin: 0 auto; */
 }
 
 .heading-1 {
@@ -78,30 +78,21 @@ html {
     letter-spacing: -1px;
 }
 
-.container-user {
-    display: flex;
-    gap: 1rem;
-    cursor: pointer;
-}
-
-.container-user .fa-user {
-    font-size: 3rem;
-    color: var(--primary-color);
-    padding-right: 2.5rem;
-    border-right: 1px solid #e2e2e2;
-}
-
-
-
-
 
 /* ********************************** */
 /*            MAIN CONTENT            */
 /* ********************************** */
 .main-content {
     background-color: var(--background-color);
+	display: flex;
 }
 
+.side-section {
+    width: 33%;
+    min-width: 50px;
+    background-color: #535C91;
+    border-top-right-radius: 10px;
+}
 
 /* ********************************** */
 /*            TOP PRODUCTS            */
@@ -151,7 +142,7 @@ html {
 .card-product {
 	background-color: #fff;
 	padding: 2rem 3rem;
-	border-radius: 0.5rem;
+	border-radius: 1rem;
 	cursor: pointer;
 	box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
 }
@@ -270,49 +261,7 @@ html {
 }
 
 
-.search-form {
-    position: relative;
-    display: flex;
-    align-items: center;
-    border: 2px solid #fff;
-    border-radius: 2rem;
-    background-color: #fff;
-    height: 4.4rem;
-    overflow: hidden;
-    border-radius: 2rem; 
-}
 
-.search-form input {
-    outline: none;
-    font-family: inherit;
-    border: none;
-    width: 25rem;
-    font-size: 1.4rem;
-    padding: 0 2rem;
-    color: #777;
-    cursor: pointer;
-}
-
-.search-form input::-webkit-search-cancel-button {
-    appearance: none;
-}
-
-.search-form .btn-search {
-    border: none;
-    background-color: var(--primary-color);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    padding: 1rem;
-    border-top-right-radius: 2rem; 
-    border-bottom-right-radius: 2rem; 
-}
-
-.btn-search i {
-    font-size: 2rem;
-    color: #fff;
-}
 
 
 
@@ -326,7 +275,8 @@ html {
 
 
 .footer {
-	background-color: var(--primary-color);
+	background-color: var(--dark-color);
+	color: white;
 }
 
 .container-footer {
@@ -370,7 +320,6 @@ html {
 .information ul li,
 .my-categorias ul li {
 	list-style: none;
-	color: #000000;
 	font-size: 1.4rem;
 	font-weight: 300;
 }
@@ -378,7 +327,6 @@ html {
 .information ul li a,
 .my-categorias ul li a {
 	text-decoration: none;
-	color: #000000;
 	font-weight: 300;
 }
 
@@ -403,7 +351,6 @@ html {
 }
 
 .social-icons span i {
-	color: #000000;
 	font-size: 1.2rem;
 }
 
