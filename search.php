@@ -29,88 +29,25 @@
     <main class="main-content">
         <section id="menu-container" class="side-section">
             <ul id="menu">
-                <li>INICIO</li>
-                <li>
-                    CATEGORÍAS
-                    <!-- <ul>
-                        <li>Sedan</li>
-                        <li>Hatchback</li>
-                        <li>SUV</li>
-                        <li>Pickup</li>
-                        <li>Moto</li>
-                        <li>Coupé</li>
-                    </ul> -->
-                </li>
+                <li>FILTROS</li>
             </ul>
         </section>
 
         <section class="container top-products">
             <!-- Sección de productos destacados -->
-            <h1 class="heading-1">Todos los productos</h1>
+            <h1 class="heading-1">Búsqueda</h1>
 
             <!-- Opciones de la sección de productos -->
             <div class="container-options">
                 <form class="search-form" method="get" action="search.php">
-                    <input type="search" placeholder="Buscar..." name="keywords"/>
-                    <input type="submit" class="btn-search" value="Buscar" title="Buscar" id="search-icon"/>
+                    <input type="search" placeholder="Buscar..." name="keywords" value="<?php echo $_GET["keywords"]; ?>"/>
+                    <input type="submit" class="btn-search" value="" title="Buscar" id="search-icon">
+                        <!-- <i class="fa-solid fa-magnifying-glass"></i> -->
+                    </input>
                 </form>
             </div>
         
-            <!-- Contenedor de productos -->
             <div class="container-products">
-                <!-- Producto 1 -->
-                <div class="card-product">
-                    <!-- Contenedor de imagen del producto 1 -->
-                    <div class="container-img">
-                        <img src="img/mustang.jpg" alt="mustang" />
-                    </div>
-                    <!-- Contenido del producto 1 -->
-                    <div class="content-card-product">
-                        <h3>Mustang 2023</h3>
-                        <p class="price">1,120,000.00</p>
-                    </div>
-                </div>
-
-                <!-- Producto 2 -->
-                <div class="card-product">
-                    <!-- Contenedor de imagen del producto 2 -->
-                    <div class="container-img">
-                        <img src="img/raptor.jpg" alt="raptor" />
-                    </div>
-                    <!-- Contenido del producto 2 -->
-                    <div class="content-card-product">
-                        <!-- Nombre del producto 2 -->
-                        <h3>RAPTOR 2021 </h3>
-                        <!-- Precio del producto 2 con descuento -->
-                        <p class="price"> 1,200,000.00  </p>
-                    </div>
-                </div>
-
-                <!-- Producto 3 -->
-                <div class="card-product">
-                    <!-- Contenedor de imagen del producto 3 -->
-                    <div class="container-img">
-                        <img src="img/audi.jpg" alt="audi" />
-                    </div>
-                    
-                    <div class="content-card-product">
-                        <h3>AUDI 2023 </h3>
-                        <p class="price">$933,100.00</p>
-                    </div>
-                </div>
-
-                <!-- Producto 4 -->
-                <div class="card-product">
-                    <!-- Contenedor de imagen del producto 4 -->
-                    <div class="container-img">
-                        <img src="img/VOCHO TUNIADO.JPG" alt="VOCHO TUNIADO " />
-                    </div>
-                    <!-- Contenido del producto 4 -->
-                    <div class="content-card-product">
-                        <h3> VOCHO TUNIADO BIEN MAMALON</h3>
-                        <p class="price">$100,000.00</p>
-                    </div>
-                </div>
             </div>
         </section>
     </main>
