@@ -358,6 +358,12 @@ html {
 }
 
 
+.btn-read-more a {
+    text-decoration: none; /* Elimina el subrayado */
+	color: black; /* Cambia el color del texto a negro */
+
+}
+
 .btn-read-more {
     padding: 1rem 3rem;
     background-color: var(--primary-color);
@@ -369,15 +375,13 @@ html {
     display: inline-block;
     border: none; /* Elimina el borde */
     outline: none; /* Elimina el contorno */
-    cursor: default; 
-	text-decoration: none !important; 
-	/* Elimina el subrayado de enlace */ 
+    cursor: pointer; /* Cambiado a pointer */
 }
-
 
 .btn-read-more:hover {
     background-color: var(--dark-color);
 }
+
 
 
 /* CREDITOS O FOOTER            */
