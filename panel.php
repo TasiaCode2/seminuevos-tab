@@ -1,3 +1,12 @@
+<?php
+
+session_start();
+
+if (!isset($_SESSION['loggedin'])) {
+	header('Location: index.html');
+	exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -10,6 +19,7 @@
 <body>
     <header>
         <h1>ADMINISTRADOR</h1>
+        <a href="logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a>
     </header>
 
     <div id="form-container">
