@@ -1,10 +1,15 @@
 <?php
+require('./vendor/autoload.php');
+
 session_start();
 
-$DATABASE_HOST = 'localhost';
-$DATABASE_USER = 'root';
-$DATABASE_PASS = '';
-$DATABASE_NAME = 'seminuevos';
+$dotenv = Dotenv\Dotenv::createImmutable('./');
+$dotenv->load();
+
+$DATABASE_HOST = $_ENV['DATABASE_HOST'];
+$DATABASE_USER = $_ENV['DATABASE_USER'];
+$DATABASE_PASS = $_ENV['DATABASE_PASS'];
+$DATABASE_NAME = $_ENV['DATABASE_NAME'];
 
 $con = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
 
