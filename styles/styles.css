@@ -320,6 +320,21 @@ body {
 }
 
 
+/* Media Queries para hacer el diseño responsive */
+
+@media screen and (max-width: 768px) {
+  .container-blogs {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .container-blogs {
+    grid-template-columns: 1fr;
+  }
+}
+
+
 
 /* CREDITOS O FOOTER            */
 
