@@ -84,7 +84,7 @@ if (!isset($_SESSION['loggedin'])) {
 					<?php
                         }
                     ?> 
-
+                    </select>
                     <label for="model">Modelo:</label>
                     <input type="text" id="modelo" name="modelo" required>
 

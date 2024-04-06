@@ -18,7 +18,7 @@
         }
 
         public function get_latests_ads(){ 
-            $sql = "SELECT id, titulo, precio FROM anuncio LIMIT 6"; 
+            $sql = "SELECT a.id, a.titulo, a.precio, a.info, lf.link FROM anuncio a JOIN link_foto lf ON a.id = lf.anuncio_id ORDER BY a.id DESC LIMIT 6; "; 
             $res = mysqli_query($this->con, $sql); 
             return $res; 
         } 
