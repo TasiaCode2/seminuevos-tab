@@ -10,22 +10,24 @@ if (!isset($_SESSION['loggedin'])) {
 
 <?php
     include("crud.php");
-    $anuncios = new CRUD();
+    $db = new CRUD();
+
     include("imageUpload.php");
     $imgUpload = new ImageUpload();
 
     if (isset($_POST) && !empty($_POST)) {
-        $title = $anuncios->sanitize($_POST['titulo']);
-        $price = $anuncios->sanitize($_POST['precio']);
-        $mileage = $anuncios->sanitize($_POST['kilometraje']);
-        // $cat = $anuncios->sanitize($_POST['categoria']);
-
-        $res = $anuncios->create_ad($title, $price, $mileage, 2);
+        $title = $db->sanitize($_POST['titulo']);
+        $price = $db->sanitize($_POST['precio']);
+        $mileage = $db->sanitize($_POST['kilometraje']);
+        $categoria = $db->sanitize($_POST['categoria']);
+        $info = $db->sanitize($_POST['info']);
+        
+        $res = $db->create_ad($title, $price, $mileage, $categoria, $info);
 
         if ($res) {
             if(isset($_FILES)){
                 $url = $imgUpload->upload_images($_FILES['imagen']['tmp_name']);
-                $anuncios->add_link($res, $url);
+                $db->add_link($res, $url);
                 $message = "Anuncio creado con éxito!";
                 $class = "alert alert-success";
             }
@@ -33,7 +35,6 @@ if (!isset($_SESSION['loggedin'])) {
                 $message = "No hubo imagenes";
                 $class = "alert alert-success";
             }
-
         } else {
             $message = "No se pudo crear el anuncio. Intente más tarde.";
             $class = "alert alert-danger";
@@ -56,6 +57,10 @@ if (!isset($_SESSION['loggedin'])) {
 </head>
 
 <body>
+<?php
+    $db = new CRUD();
+    $categorias = $db->get_categories();
+?>
     <header>
         <h1>ADMINISTRADOR</h1>
         <a href="logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a>
@@ -68,6 +73,18 @@ if (!isset($_SESSION['loggedin'])) {
                     <label for="titulo">Título:</label>
                     <input type="text" id="titulo" name="titulo" required>
 
+                    <label for="titulo">Categoría:</label>
+                    <select type="text" id="categoria" name="categoria" required>
+                    <?php 
+						while ($row=mysqli_fetch_object($categorias)) {
+                            $id=$row->id;
+                            $cat=$row->tipo;
+					?>
+                        <option value="<?php echo $id;?>"><?php echo $cat;?></option>
+					<?php
+                        }
+                    ?> 
+
                     <label for="model">Modelo:</label>
                     <input type="text" id="modelo" name="modelo" required>
 
@@ -77,15 +94,8 @@ if (!isset($_SESSION['loggedin'])) {
                     <label for="kilometraje">Kilometraje:</label>
                     <input type="text" id="kilometraje" name="kilometraje" required>
 
-                    <!-- <label for="invoice-type">Tipo de Factura:</label>
-                    <select id="invoice-type" name="invoice-type" required>
-                        <option value="original">Original</option>
-                        <option value="Refacturado">Refacturado</option>
-                    </select> -->
-
-                    <!-- <label for="additional-info">Información Adicional:</label>
-                    <textarea id="additional-info" name="additional-info"></textarea> -->
-
+                    <label for="additional-info">Información Adicional:</label>
+                    <textarea id="additional-info" name="info"></textarea>
             </div>
 
             <div id="right-section">

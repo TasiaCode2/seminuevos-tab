@@ -32,7 +32,8 @@ CREATE TABLE `anuncio` (
   `titulo` varchar(30) NOT NULL,
   `precio` float NOT NULL,
   `kilometraje` int(11) NOT NULL,
-  `categoria` tinyint(4) NOT NULL
+  `categoria` tinyint(4) NOT NULL,
+  `info` varchar(500) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -51,12 +52,12 @@ CREATE TABLE `categoria` (
 --
 
 INSERT INTO `categoria` (`id`, `tipo`) VALUES
-(2, 'Sedan'),
-(3, 'Hatchback'),
-(4, 'SUV'),
-(5, 'Pickup'),
-(6, 'Moto'),
-(7, 'Coupé');
+(1, 'Sedan'),
+(2, 'Hatchback'),
+(3, 'SUV'),
+(4, 'Pickup'),
+(5, 'Moto'),
+(6, 'Coupé');
 
 -- --------------------------------------------------------
 

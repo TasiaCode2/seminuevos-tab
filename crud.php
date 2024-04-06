@@ -28,10 +28,21 @@
             return $res; 
         } 
 
-        public function create_ad($title, $price, $mileage, $cat){ 
-            // $sql = "INSERT INTO `anuncio` (titulo, precio, kilometraje, categoria, en_venta) VALUES ('$title', '$price', '$mileage', '$cat', 1)"; 
-            $sql = "INSERT INTO `anuncio` (titulo, precio, kilometraje, categoria) VALUES ('$title', '$price', '$mileage', '$cat')";
+        public function get_categories(){
+            $sql = "SELECT * FROM categoria"; 
             $res = mysqli_query($this->con, $sql); 
+            return $res; 
+        }
+
+        public function create_ad($title, $price, $mileage, $cat, $info){
+            $sql = "INSERT INTO `anuncio` (titulo, precio, kilometraje, categoria, info) VALUES ('$title', '$price', '$mileage', '$cat', '$info')";
+            
+            try {
+                $res = mysqli_query($this->con, $sql); 
+            } catch (Exception $ex) {
+                echo $ex->getMessage();
+                return false;
+            }
 
             if($res){ 
               return mysqli_insert_id($this->con);; 
