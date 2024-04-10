@@ -157,14 +157,13 @@
                 </div>
 
                 <div class="newsletter">
-                    <p class="title-footer">Cotiza con nosotros </p>
-
+                   <p class="title-footer">Cotiza con nosotros</p>
                     <div class="content">
-                        <p>
-                            ¡Para una cotizacion rapida y eficaz!
-                        </p>
-                        <input type="email" placeholder="Ingresa tu correo aquí...">
-                        <button>Enviar</button>
+                        <p>¡Para una cotización rápida y eficaz!</p>
+                        <input type="email" id="emailInput" placeholder="Ingresa tu correo aquí...">
+                        <button type="submit" onclick="enviarCorreo()" style="padding: 10px 20px; background-color: #007bff; color: #fff; border: none; border-radius: 5px; cursor: pointer;">Enviar</button>
+                        <p id="mensajeCorreoEnviado" style="display: none; color: green;">Correo enviado</p>
+                        <p id="mensajeError" style="display: none; color: red;">Ingresa un correo válido</p>
                     </div>
                 </div>
             </div>
@@ -202,5 +201,37 @@
 
     <script src="https://kit.fontawesome.com/73d63dce2b.js" 
     crossorigin="anonymous"></script>   
+
+	 <script>
+	        function enviarCorreo() {
+	            var correo = document.getElementById("emailInput").value;
+	            
+	            var regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+	
+	            if (regex.test(correo)) {
+	         
+	            
+	                document.getElementById("emailInput").value = "";
+	
+	                document.getElementById("mensajeCorreoEnviado").style.display = "block";
+	
+	                setTimeout(function() {
+	                    document.getElementById("mensajeCorreoEnviado").style.display = "none";
+	                }, 2000);
+	                
+	                document.getElementById("mensajeError").style.display = "none";
+	            } else {
+	
+	                document.getElementById("mensajeError").style.display = "block";
+	
+	                // Ocultar el mensaje de error después de 2 segundos
+	                setTimeout(function() {
+	                    document.getElementById("mensajeError").style.display = "none";
+	                }, 2000);
+	            }
+	        }
+	    </script>
+
+	
 </body>
 </html>
