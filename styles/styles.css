@@ -339,7 +339,6 @@ body {
 
 /* CREDITOS O FOOTER            */
 
-
 .footer {
 	background-color: var(--dark-color);
 	color: white;
@@ -388,12 +387,14 @@ body {
 	list-style: none;
 	font-size: 1.4rem;
 	font-weight: 300;
+	color: white; /* Todos los textos ahora serán blancos */
 }
 
 .information ul li a,
 .my-categorias ul li a {
 	text-decoration: none;
 	font-weight: 300;
+	color: white; /* Todos los enlaces ahora serán blancos */
 }
 
 .information ul li a:hover,
@@ -428,7 +429,6 @@ body {
 	background-color: #00acee;
 }
 
-
 .instagram {
 	background: linear-gradient(
 		#405de6,
@@ -443,7 +443,7 @@ body {
 
 .content p {
 	font-size: 1.4rem;
-	color: #000000;
+	color: white; /* Todos los textos ahora serán blancos */
 	font-weight: 300;
 }
 
@@ -451,10 +451,10 @@ body {
 	outline: none;
 	background: none;
 	border: none;
-	border-bottom: 2px solid #000000;
+	border-bottom: 2px solid #ffffff;
 	cursor: pointer;
 	padding: 0.5rem 0 1.2rem;
-	color: var(--dark-color);
+	color: white; /* Todos los textos ahora serán blancos */
 	display: block;
 	margin-bottom: 3rem;
 	margin-top: 2rem;
@@ -463,13 +463,13 @@ body {
 }
 
 .content input::-webkit-input-placeholder {
-	color: #000000;
+	color: #fcfcfc;
 }
 
 .content button {
 	border: none;
 	background-color: #686868;
-	color: #ffffff;
+	color: white; /* Todos los textos ahora serán blancos */
 	text-transform: uppercase;
 	padding: 1rem 3rem;
 	border-radius: 2rem;
@@ -488,11 +488,37 @@ body {
 	display: flex;
 	justify-content: space-between;
 	padding-top: 2rem;
-
 	border-top: 1px solid #000000;
 }
 
 .copyright p {
 	font-weight: 400;
 	font-size: 1.6rem;
+	color: white; /* Todos los textos ahora serán blancos */
 }
+
+/* Media queries for responsiveness */
+
+@media only screen and (max-width: 768px) {
+	.container-footer {
+		padding: 2rem;
+	}
+
+	.menu-footer {
+		grid-template-columns: 1fr;
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	.title-footer {
+		font-size: 1.4rem;
+	}
+}
+
+/* Media query for responsiveness */
+@media only screen and (max-width: 768px) {
+    .contact-info {
+        align-items: center; /* Center align items on smaller screens */
+    }
+}
+
