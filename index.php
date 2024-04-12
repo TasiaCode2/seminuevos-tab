@@ -8,62 +8,57 @@
 			content="width=device-width, initial-scale=1.0"
 		/>
 		<title>SEMINUEVOS TABASCO</title>
-		<link rel="stylesheet" href="styles/styles.css" />
-		<link rel="stylesheet" href="styles/index.css" />
+		<link rel="stylesheet" href="styles/test.css" />
 </head>
-
-<!--  -->
 
 <body>
 <?php
     include("crud.php");
     $db = new CRUD();
     $anuncios = $db->get_latests_ads();
+    $categorias = $db->get_categories();
 ?>
     <header>
-        <div class="container-hero">
-            <div class=" container hero">
-                <div>Menú logo</div>
-
-                <div class="container-logo">
-                    <h1 class="logo"> <a href="/index.html">LuxeCars</a></h1>
-                </div>
-            </div>
+        <box-icon name='menu' id="menu-icon" class="menu-icon"></box-icon>
+        
+        <div class="logo-container">
+            <a href="./index.php"><img class="logo" src="./img/Logo.jpg" alt=""></a>
         </div>
     </header>
 
-
     <main class="main-content">
         <section id="menu-container" class="side-section">
-            <ul id="menu">
-                <li>INICIO</li>
+            <box-icon name='x' id="close-icon" class="close-icon"></box-icon>
+            <ul id="menu" class="menu">
+                <li><a href="#">INICIO</a></li>
                 <li>
-                    CATEGORÍAS
-                    <!-- <ul>
-                        <li>Sedan</li>
-                        <li>Hatchback</li>
-                        <li>SUV</li>
-                        <li>Pickup</li>
-                        <li>Moto</li>
-                        <li>Coupé</li>
-                    </ul> -->
+                    <p id="category-list">CATEGORÍAS</p>
+                    <ul id="categories" class="categories">
+                    <?php 
+                        while ($row=mysqli_fetch_object($categorias)) {
+                        $categoria=$row->tipo;
+                    ?>
+                        <li class="category">
+                            <a href="search.php?category=<?php echo $categoria;?>"><?php echo $categoria;?></a>
+                        </li>
+                    <?php
+                        }
+                    ?> 
+                    </ul>
                 </li>
             </ul>
         </section>
 
-        <section class="container top-products">
-            <h1 class="heading-1">Todos los productos</h1>
+        <section class="main-section">
+            <h1>Anuncios más nuevos</h1>
 
-            <!-- Opciones de la sección de productos -->
-            <div class="container-options">
-                <form class="search-form" method="get" action="search.php">
-                    <input type="search" placeholder="Buscar..." name="keywords"/>
-                    <input type="submit" class="btn-search" value="Buscar" title="Buscar" id="search-icon"/>
-                </form>
-            </div>
+            <form class="search-form" method="get" action="search.php">
+                <input type="search" placeholder="Buscar..." name="keywords"/>
+                <input type="submit" class="btn-search" value="Buscar" title="Buscar" id="search-icon"/>
+            </form>
         
             <!-- Los ultimos 6 anuncios -->
-            <div class="container-products">
+            <div class="ads-container">
             <?php 
                 while ($row=mysqli_fetch_object($anuncios)) {
                     $titulo=$row->titulo;
@@ -90,8 +85,8 @@
         </section>
     </main>
 
-	<section class="container blogs">
-        <h1 class="heading-1">Últimos Blogs</h1>
+	<section class="blogs">
+        <h2>Últimos Blogs</h2>
 
         <div class="container-blogs">
             <div class="card-blog">
@@ -200,7 +195,10 @@
     </footer>
 
     <script src="https://kit.fontawesome.com/73d63dce2b.js" 
-    crossorigin="anonymous"></script>   
+    crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+    <script type="text/javascript" src="./index.js"></script>
+
 
 	 <script>
 	        function enviarCorreo() {
