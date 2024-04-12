@@ -198,8 +198,8 @@
     <script src="https://kit.fontawesome.com/73d63dce2b.js" 
     crossorigin="anonymous"></script>
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
-    <script type="text/javascript" src="./index.js"></script>
-    <script type="text/javascript" src="./menu.js"></script> 
+    <script type="text/javascript" src="./scripts/index.js"></script>
+    <script type="text/javascript" src="./scripts/menu.js"></script> 
 
     <script>
         function enviarCorreo() {

@@ -81,6 +81,30 @@
             
             return $res; 
         }
+
+        public function search($keywords, $filters) {
+            $keywords = implode("%", explode(" ", $keywords));
+
+            $sql = "SELECT a.id, a.titulo, a.precio, a.info, lf.link 
+            FROM anuncio a JOIN link_foto lf ON a.id = lf.anuncio_id 
+            WHERE titulo LIKE '%$keywords%'"; 
+
+            if(sizeof($filters) > 0) {
+                $minPrice = $filters['minPrice'];
+                $maxPrice = $filters['maxPrice'];
+            
+                if ($filters['category'] > 0) {
+                    $category = $filters['category'];
+                    $sql = $sql . " AND categoria = $category";
+                }
+
+                $sql = $sql . " AND precio BETWEEN $minPrice AND $maxPrice";
+            }
+
+            // echo $sql;
+            $res = mysqli_query($this->con, $sql);
+            return $res;
+        }
     }
 ?>
 

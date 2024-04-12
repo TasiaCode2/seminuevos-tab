@@ -21,9 +21,17 @@
 
     if (isset($_GET) && !empty($_GET)) {
         $keywords = $db->sanitize($_GET['keywords']);
-        // $filters = ['category' => $db->sanitize($_GET['category'])];
+        $filters = [];
 
-        $results = $db->search($keywords);
+        if(isset($_GET['category'])) {
+            $filters = [
+                'category' => $db->sanitize($_GET['category']),
+                'minPrice' => $db->sanitize($_GET['minPrice']),
+                'maxPrice' => $db->sanitize($_GET['maxPrice']) 
+            ];
+        }
+
+        $results = $db->search($keywords, $filters);
     }
 ?>
     <header>
@@ -48,13 +56,19 @@
                             
                             <div class="categories-filter">
                                 <p>Categorías</p>
+                                <div>
+                                    <!-- Si no hay categoria seleccionada o la categoria es 0, selecciona la categoria "Todas" -->
+                                    <input type="radio" id="Todas" name="category" value="0" <?php echo (!isset($_GET['category'])) || ($_GET['category'] == 0) ? "checked" : "";?> >
+                                    <label for="Todas" class="form-category">Todas</label><br>
+                                </div>
                                 <?php 
                                     while ($row=mysqli_fetch_object($categorias)) {
                                         $categoria = $row->tipo;
                                         $id = $row->id;
                                         ?>
                                         <div>
-                                            <input type="radio" id="<?php echo $categoria;?>" name="category" value="<?php echo $id;?>">
+                                            <!-- Revisa si esta categoria esta escogida -->
+                                            <input type="radio" id="<?php echo $categoria;?>" name="category" value="<?php echo $id;?>" <?php echo isset($_GET['category']) && ($_GET['category'] == $id) ? "checked" : "";?> >
                                             <label for="<?php echo $categoria;?>" class="form-category"><?php echo $categoria;?></label><br>
                                         </div>
                                 <?php
@@ -63,9 +77,9 @@
                             </div>
                             
                             <div>
-                                <p>Año</p>
-                                <input type="number" id="min-year" name="minYear" min="1992" max="2022" value="1992">
-                                <input type="number" id="max-year" name="maxYear" min="1992" max="2022" value="2022">
+                                <p>Precio</p>
+                                <input type="number" id="min-price" name="minPrice" min="50000" max="2000000" value="50000">
+                                <input type="number" id="max-price" name="maxPrice" min="50000" max="2000000" value="2000000">
                             </div>
 
                             <div>
@@ -170,6 +184,6 @@
     <script src="https://kit.fontawesome.com/73d63dce2b.js" 
     crossorigin="anonymous"></script>  
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
-    <script type="text/javascript" src="./menu.js"></script> 
+    <script type="text/javascript" src="./scripts/menu.js"></script> 
 </body>
 </html>
