@@ -8,46 +8,103 @@
 			content="width=device-width, initial-scale=1.0"
 		/>
 		<title>SEMINUEVOS TABASCO</title>
-		<link rel="stylesheet" href="styles.css" />
-		<link rel="stylesheet" href="index.css" />
+		<link rel="stylesheet" href="./styles/styles.css" />
+		<link rel="stylesheet" href="./styles/search.css" />
 </head>
 
 <body>
-    <header>
-        <div class="container-hero">
-            <div class=" container hero">
-                <div>Menú logo</div>
+<?php
+    include("crud.php");
+    $db = new CRUD();
+    $categorias = $db->get_categories();
+    $results = [];
 
-                <div class="container-logo">
-                    <h1 class="logo"> <a href="/index.html">LuxeCars</a></h1>
-                </div>
-            </div>
+    if (isset($_GET) && !empty($_GET)) {
+        $keywords = $db->sanitize($_GET['keywords']);
+        // $filters = ['category' => $db->sanitize($_GET['category'])];
+
+        $results = $db->search($keywords);
+    }
+?>
+    <header>
+        <box-icon name='menu' id="menu-icon" class="menu-icon"></box-icon>
+        
+        <div class="logo-container">
+            <a href="./index.php"><img class="logo" src="./img/Logo.jpg" alt=""></a>
         </div>
     </header>
 
-
     <main class="main-content">
         <section id="menu-container" class="side-section">
-            <ul id="menu">
-                <li>FILTROS</li>
-            </ul>
+            <box-icon name='x' id="close-icon" class="close-icon"></box-icon>
+            <ul id="menu" class="menu">
+                    <li><a href="./index.php">INICIO</a></li>
+                    <li>
+                        <p>FILTROS</p>
+                        <form method="get" action="search.php">
+                            <div class="search-form">
+                                <input type="search" placeholder="Palabras clave..." name="keywords" value="<?php echo $_GET["keywords"]; ?>"/>
+                            </div>
+                            
+                            <div class="categories-filter">
+                                <p>Categorías</p>
+                                <?php 
+                                    while ($row=mysqli_fetch_object($categorias)) {
+                                        $categoria = $row->tipo;
+                                        $id = $row->id;
+                                        ?>
+                                        <div>
+                                            <input type="radio" id="<?php echo $categoria;?>" name="category" value="<?php echo $id;?>">
+                                            <label for="<?php echo $categoria;?>" class="form-category"><?php echo $categoria;?></label><br>
+                                        </div>
+                                <?php
+                                    }
+                                ?>
+                            </div>
+                            
+                            <div>
+                                <p>Año</p>
+                                <input type="number" id="min-year" name="minYear" min="1992" max="2022" value="1992">
+                                <input type="number" id="max-year" name="maxYear" min="1992" max="2022" value="2022">
+                            </div>
+
+                            <div>
+                                <p>Kilometraje</p>
+                                <input type="range" min="10000" max="400000" step="50000"/>
+                            </div>
+
+                            <input type="submit" class="btn-search" value="Buscar" title="Buscar" id="search-icon"></input>
+                        </form>
+                    </li>
+                </ul>
         </section>
 
-        <section class="container top-products">
-            <!-- Sección de productos destacados -->
-            <h1 class="heading-1">Búsqueda</h1>
-
-            <!-- Opciones de la sección de productos -->
-            <div class="container-options">
-                <form class="search-form" method="get" action="search.php">
-                    <input type="search" placeholder="Buscar..." name="keywords" value="<?php echo $_GET["keywords"]; ?>"/>
-                    <input type="submit" class="btn-search" value="" title="Buscar" id="search-icon">
-                        <!-- <i class="fa-solid fa-magnifying-glass"></i> -->
-                    </input>
-                </form>
-            </div>
-        
-            <div class="container-products">
+        <section class="main-section">
+            <h1>Resultados de búsqueda</h1>
+            
+            <div class="ads-container">
+                <?php 
+                    while ($row=mysqli_fetch_object($results)) {
+                        $titulo=$row->titulo;
+                        $precio=$row->precio;
+                        $info=$row->info;
+                        $link=$row->link;
+                ?>
+                    <div class="card-product">
+                        <div class="container-img">
+                            <img src="<?php echo $link;?>" alt="mustang" />
+                        </div>
+                        <div class="content-card-product">
+                            <h3><?php echo $titulo;?></h3>
+                            <p class="price">$<?php echo $precio;?></p>
+                        </div>
+                        <div class="product-info">
+                            <p><?php echo $info;?></p>
+                        </div>
+                    </div>
+                <?php
+                    }
+                ?> 
             </div>
         </section>
     </main>
@@ -111,6 +168,8 @@
     </footer>
 
     <script src="https://kit.fontawesome.com/73d63dce2b.js" 
-    crossorigin="anonymous"></script>   
+    crossorigin="anonymous"></script>  
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+    <script type="text/javascript" src="./menu.js"></script> 
 </body>
 </html>

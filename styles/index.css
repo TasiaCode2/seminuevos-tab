@@ -1,36 +1,44 @@
-#menu {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    font-size: 15px;
+.menu > li:first-child {
+	display: none;
 }
 
-#menu > li {
-    width: 100%;
+.menu > li,
+.category {
+    padding: 10px 10px;
     text-align: center;
-    line-height: 50px;
-    max-height: 50px;
-    flex-grow: 1;
 }
 
-#menu > li:hover {
-    background-color: #1B1A55;
-    color: white;
+#category-list {
+    padding-bottom: 10px;
+}
+
+.categories {
+    display: none;
+}
+
+.show {
+    display: block;
+}
+
+@media screen and (min-width: 768px) {
+    
+}
+
+/* ********************************** */
+/*             SEARCH BAR             */
+/* ********************************** */
+.btn-search {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
     cursor: pointer;
 }
 
-#menu > li:first-child:hover {
-    border-top-right-radius: 10px;
-}
-
-.container {
-    padding: 20px;
-}
-
 .search-form {
-    width: 100%;
+    display: inline-block;
+    margin-bottom: 20px;
+    max-width: 100%;
     position: relative;
     display: flex;
     align-items: center;
@@ -49,7 +57,6 @@
     font-size: 1.4rem;
     padding: 0 2rem;
     color: #777;
-    cursor: pointer;
 }
 
 .search-form input[type="search"] {
@@ -58,7 +65,6 @@
 
 .search-form input[type="submit"] {
     flex-grow: 1;
-    /* max-width: 13%; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -80,31 +86,137 @@
     border-bottom-right-radius: 2rem; 
 }
 
-.btn-search i {
-    font-size: 2rem;
+/* ********************************** */
+/*                BLOGS               */
+/* ********************************** */
+.blogs {
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+	max-width: 80%;
+	margin: auto;
+}
+
+.container-blogs {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 3rem;
+	max-width: 100%;
+}
+
+.card-blog {
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+	max-width: 100%;
+}
+
+.card-blog .container-img {
+	border-radius: 2rem;
+	cursor: pointer;
+	position: relative;
+	overflow: hidden;
+	max-width: 100%;
+}
+
+.button-group-blog {
+	position: absolute;
+	bottom: 1.5rem;
+	right: -2.5rem;
+
+	display: flex;
+	gap: 0.7rem;
+	z-index: -1;
+	transition: all 0.3s ease;
+}
+
+.card-blog:hover .button-group-blog {
+	z-index: 0;
+	right: 1.5rem;
+}
+
+.button-group-blog span {
+	background-color: #fff;
+	padding: 1rem;
+	border-radius: 50%;
+	transition: all 0.4s ease;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.button-group-blog span i {
+	font-size: 1.3rem;
+}
+
+.button-group-blog span:hover {
+	background-color: var(--primary-color);
+}
+
+.button-group-blog span:hover i {
+	color: #fff;
+}
+
+.content-blog h3 {
+	font-size: 1.8rem;
+	margin-bottom: 1.7rem;
+	color: var(--dark-color);
+	font-weight: 500;
+}
+
+.content-blog h3:hover {
+	color: var(--primary-color);
+	cursor: pointer;
+}
+
+.content-blog p {
+	margin-top: 1rem;
+	font-size: 1.4rem;
+	color: #777;
+}
+
+.content-blog span {
+	color: var(--primary-color);
+	font-size: 1.3rem;
+}
+
+
+.btn-read-more a {
+    text-decoration: none;
+	color: black;
+
+}
+
+.btn-read-more {
+    padding: 1rem 3rem;
+    background-color: var(--primary-color);
     color: #fff;
+    text-transform: uppercase;
+    font-size: 1.4rem;
+    border-radius: 2rem;
+    margin: 3rem 0 5rem;
+    display: inline-block;
+    border: none;
+    outline: none; 
+    cursor: pointer; 
+}
+
+.btn-read-more:hover {
+    background-color: var(--dark-color);
 }
 
 
-/* #search-icon { 
-    background:none; 
-    position:relative;
-} */
+/* Media Queries para mostrar los blogs de manera responsive */
 
-#search-icon::after {
-    font-family: 'FontAwesome';
-    /* top:0;
-    left:-5px;
-    padding-right:10px; */
-    content: "hola"; 
-    color: white;
+@media screen and (max-width: 768px) {
+  .container-blogs {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
-/* .wc-bookings-date-picker .ui-icon-circle-triangle-w::before {
-    content: "\f054";
-    font-family: 'FontAwesome';
-    font-size: 240px;
-    position: absolute;
-    left: -96px;
-    top:0;
-} */
+@media screen and (max-width: 576px) {
+  .container-blogs {
+    grid-template-columns: 1fr;
+  }
+}

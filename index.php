@@ -8,7 +8,8 @@
 			content="width=device-width, initial-scale=1.0"
 		/>
 		<title>SEMINUEVOS TABASCO</title>
-		<link rel="stylesheet" href="styles/test.css" />
+		<link rel="stylesheet" href="styles/styles.css" />
+		<link rel="stylesheet" href="styles/index.css" />
 </head>
 
 <body>
@@ -198,38 +199,36 @@
     crossorigin="anonymous"></script>
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
     <script type="text/javascript" src="./index.js"></script>
+    <script type="text/javascript" src="./menu.js"></script> 
 
+    <script>
+        function enviarCorreo() {
+            var correo = document.getElementById("emailInput").value;
+            
+            var regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-	 <script>
-	        function enviarCorreo() {
-	            var correo = document.getElementById("emailInput").value;
-	            
-	            var regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-	
-	            if (regex.test(correo)) {
-	         
-	            
-	                document.getElementById("emailInput").value = "";
-	
-	                document.getElementById("mensajeCorreoEnviado").style.display = "block";
-	
-	                setTimeout(function() {
-	                    document.getElementById("mensajeCorreoEnviado").style.display = "none";
-	                }, 2000);
-	                
-	                document.getElementById("mensajeError").style.display = "none";
-	            } else {
-	
-	                document.getElementById("mensajeError").style.display = "block";
-	
-	                // Ocultar el mensaje de error después de 2 segundos
-	                setTimeout(function() {
-	                    document.getElementById("mensajeError").style.display = "none";
-	                }, 2000);
-	            }
-	        }
-	    </script>
+            if (regex.test(correo)) {
+            
+            
+                document.getElementById("emailInput").value = "";
 
-	
+                document.getElementById("mensajeCorreoEnviado").style.display = "block";
+
+                setTimeout(function() {
+                    document.getElementById("mensajeCorreoEnviado").style.display = "none";
+                }, 2000);
+                
+                document.getElementById("mensajeError").style.display = "none";
+            } else {
+
+                document.getElementById("mensajeError").style.display = "block";
+
+                // Ocultar el mensaje de error después de 2 segundos
+                setTimeout(function() {
+                    document.getElementById("mensajeError").style.display = "none";
+                }, 2000);
+            }
+        }
+    </script>
 </body>
 </html>
