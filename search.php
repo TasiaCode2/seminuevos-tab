@@ -87,11 +87,6 @@
                                 <input type="number" id="max-model" name="maxModel" min="1990" max="2023" value="2023">
                             </div>
 
-                            <div>
-                                <p>Kilometraje</p>
-                                <input type="range" min="10000" max="400000" step="50000"/>
-                            </div>
-
                             <input type="submit" class="btn-search" value="Buscar" title="Buscar" id="search-icon"></input>
                         </form>
                     </li>

@@ -97,15 +97,15 @@
 	display: flex;
 	flex-direction: column;
 	gap: 2rem;
-	max-width: 80%;
-	margin: auto;
+    background-color: white;
 }
 
 .container-blogs {
+    max-width: 80%;
+    margin: auto;
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
 	gap: 3rem;
-	max-width: 100%;
 }
 
 .card-blog {
@@ -213,14 +213,21 @@
 
 /* Media Queries para mostrar los blogs de manera responsive */
 
+@media screen and (max-width: 576px) {
+    .container-blogs {
+      grid-template-columns: 1fr;
+    }
+}
+
 @media screen and (max-width: 768px) {
   .container-blogs {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-@media screen and (max-width: 576px) {
-  .container-blogs {
-    grid-template-columns: 1fr;
-  }
+@media screen and (min-width: 1444px) {
+    .container-blogs {
+        max-width: 1444px;
+        margin: auto;
+    }
 }

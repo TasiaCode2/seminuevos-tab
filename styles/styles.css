@@ -17,6 +17,10 @@ html {
     box-sizing: border-box;
 }
 
+body {
+	background-color: var(--background-color);
+}
+
 /* ********************************** */
 /*               HEADER               */
 /* ********************************** */
@@ -67,7 +71,8 @@ h1, h2 {
 }
 
 .main-section {
-	padding: 20px;
+	padding-left: 20px;
+	padding-right: 20px;
 	max-width: 100%;
 }
 
@@ -150,6 +155,13 @@ h1, h2 {
 		padding-left: 30px;
 		padding-right: 30px;
     }
+}
+
+@media screen and (min-width: 1444px) {
+	.main-content {
+		max-width: 1444px;
+		margin: auto;
+	}
 }
 
 /* ********************************** */
