@@ -20,16 +20,15 @@
     $results = [];
 
     if (isset($_GET) && !empty($_GET)) {
-        $keywords = $db->sanitize($_GET['keywords']);
-        $filters = [];
+        $keywords = isset($_GET['keywords']) ? $db->sanitize($_GET['keywords']) : "";
 
-        if(isset($_GET['category'])) {
-            $filters = [
-                'category' => $db->sanitize($_GET['category']),
-                'minPrice' => $db->sanitize($_GET['minPrice']),
-                'maxPrice' => $db->sanitize($_GET['maxPrice']) 
-            ];
-        }
+        $filters = [
+            'category' => isset($_GET['category']) ? $db->sanitize($_GET['category']) : 0,
+            'minPrice' => isset($_GET['minPrice']) ? $db->sanitize($_GET['minPrice']) : 50000,
+            'maxPrice' => isset($_GET['maxPrice']) ? $db->sanitize($_GET['maxPrice']) : 2000000,
+            'minModel' => isset($_GET['minModel']) ? $db->sanitize($_GET['minModel']) : 1990,
+            'maxModel' => isset($_GET['maxModel']) ? $db->sanitize($_GET['maxModel']) : 2023
+        ];
 
         $results = $db->search($keywords, $filters);
     }
@@ -38,7 +37,7 @@
         <box-icon name='menu' id="menu-icon" class="menu-icon"></box-icon>
         
         <div class="logo-container">
-            <a href="./index.php"><img class="logo" src="./img/Logo.jpg" alt=""></a>
+            <a href="./index.php"><img class="logo" src="./img/Logo.png" alt=""></a>
         </div>
     </header>
 
@@ -49,9 +48,9 @@
                     <li><a href="./index.php">INICIO</a></li>
                     <li>
                         <p>FILTROS</p>
-                        <form method="get" action="search.php">
+                        <form method="get" action="search.php" class="filters">
                             <div class="search-form">
-                                <input type="search" placeholder="Palabras clave..." name="keywords" value="<?php echo $_GET["keywords"]; ?>"/>
+                                <input type="search" placeholder="Palabras clave..." name="keywords" value="<?php echo isset($_GET["keywords"]) ? $_GET["keywords"] : "" ; ?>"/>
                             </div>
                             
                             <div class="categories-filter">
@@ -80,6 +79,12 @@
                                 <p>Precio</p>
                                 <input type="number" id="min-price" name="minPrice" min="50000" max="2000000" value="50000">
                                 <input type="number" id="max-price" name="maxPrice" min="50000" max="2000000" value="2000000">
+                            </div>
+
+                            <div>
+                                <p>Modelo</p>
+                                <input type="number" id="min-model" name="minModel" min="1990" max="2023" value="1990">
+                                <input type="number" id="max-model" name="maxModel" min="1990" max="2023" value="2023">
                             </div>
 
                             <div>

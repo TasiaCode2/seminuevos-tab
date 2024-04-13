@@ -23,7 +23,7 @@
         <box-icon name='menu' id="menu-icon" class="menu-icon"></box-icon>
         
         <div class="logo-container">
-            <a href="./index.php"><img class="logo" src="./img/Logo.jpg" alt=""></a>
+            <a href="./index.php"><img class="logo" src="./img/Logo.png" alt=""></a>
         </div>
     </header>
 
@@ -31,16 +31,16 @@
         <section id="menu-container" class="side-section">
             <box-icon name='x' id="close-icon" class="close-icon"></box-icon>
             <ul id="menu" class="menu">
-                <li><a href="#">INICIO</a></li>
                 <li>
                     <p id="category-list">CATEGORÍAS</p>
                     <ul id="categories" class="categories">
                     <?php 
                         while ($row=mysqli_fetch_object($categorias)) {
                         $categoria=$row->tipo;
+                        $id=$row->id;
                     ?>
                         <li class="category">
-                            <a href="search.php?category=<?php echo $categoria;?>"><?php echo $categoria;?></a>
+                            <a href="search.php?category=<?php echo $id;?>"><?php echo $categoria;?></a>
                         </li>
                     <?php
                         }
@@ -198,7 +198,6 @@
     <script src="https://kit.fontawesome.com/73d63dce2b.js" 
     crossorigin="anonymous"></script>
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
-    <script type="text/javascript" src="./scripts/index.js"></script>
     <script type="text/javascript" src="./scripts/menu.js"></script> 
 
     <script>

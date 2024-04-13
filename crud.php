@@ -79,17 +79,44 @@
             FROM anuncio a JOIN link_foto lf ON a.id = lf.anuncio_id 
             WHERE titulo LIKE '%$keywords%'"; 
 
-            if(sizeof($filters) > 0) {
-                $minPrice = $filters['minPrice'];
-                $maxPrice = $filters['maxPrice'];
-            
-                if ($filters['category'] > 0) { // categoria 0 = todas las categorias
-                    $category = $filters['category'];
-                    $sql = $sql . " AND categoria = $category";
-                }
-
-                $sql = $sql . " AND precio BETWEEN $minPrice AND $maxPrice";
+            if ($filters['category'] > 0) { // categoria 0 = todas las categorias
+                $category = $filters['category'];
+                $sql = $sql . " AND categoria = $category";
             }
+
+            $minPrice = $filters['minPrice'];
+            $maxPrice = $filters['maxPrice'];
+        
+            if($maxPrice > 2000000 || $maxPrice < 0) {
+                $maxPrice = 2000000;
+            }
+
+            if ($minPrice < 50000) {
+                $minPrice = 50000;
+            }
+
+            if ($minPrice > $maxPrice) {
+                $minPrice = 50000;
+            }
+
+            $sql = $sql . " AND precio BETWEEN $minPrice AND $maxPrice";
+            
+            $minModel = $filters['minModel'];
+            $maxModel = $filters['maxModel'];
+        
+            if($maxModel > 2023 || $maxModel < 0) {
+                $maxModel = 2023;
+            }
+
+            if ($minModel < 1990) {
+                $minPrice = 1990;
+            }
+
+            if ($minModel > $maxModel) {
+                $minModel = 1990;
+            }
+
+            $sql = $sql . " AND modelo BETWEEN $minModel AND $maxModel";
 
             $res = mysqli_query($this->con, $sql);
             return $res;
