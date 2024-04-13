@@ -18,10 +18,10 @@
         }
 
         public function get_latests_ads(){ 
-            $sql = "SELECT a.id, a.titulo, a.precio, a.info, lf.link FROM anuncio a JOIN link_foto lf ON a.id = lf.anuncio_id ORDER BY a.id DESC LIMIT 6; "; 
+            $sql = "SELECT a.id, a.titulo, a.precio, a.info, lf.link FROM anuncio a JOIN link_foto lf ON a.id = lf.anuncio_id WHERE a.en_venta = 1 ORDER BY a.id DESC LIMIT 6; "; 
             $res = mysqli_query($this->con, $sql); 
             return $res; 
-        } 
+        }
 
         public function sanitize($var){ 
             $res = mysqli_real_escape_string($this->con, $var); 
@@ -46,23 +46,17 @@
 
             if($res){ 
               return mysqli_insert_id($this->con);; 
-            } 
+            }
+            
             return false; 
         }
 
-        public function get_details($id){ 
-            $sql = "SELECT * FROM anuncio where id='$id'";  
+        public function get_all_ads(){ 
+            $sql = "SELECT a.id, a.titulo, a.en_venta, lf.link FROM anuncio a JOIN link_foto lf ON a.id = lf.anuncio_id";  
             $res = mysqli_query($this->con, $sql);  
-            $rows = mysqli_fetch_object($res);  
-            return $rows ;  
+            // $rows = mysqli_fetch_object($res);  
+            return $res ;  
         } 
-        
-        public function update($nombre,$apellido,$direccion, $id){
-            $sql = "UPDATE Estudiantes SET nombre='$nombre', apellido='$apellido', direccion='$direccion' WHERE id=$id"; 
-            $res = mysqli_query($this->con, $sql); 
-            
-            return $res; 
-        }
         
         public function mark_sold($id){ 
             $sql = "UPDATE anuncio SET en_venta = 0 WHERE id=$id"; 

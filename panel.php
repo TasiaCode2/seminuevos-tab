@@ -1,11 +1,10 @@
 <?php
+    session_start();
 
-session_start();
-
-if (!isset($_SESSION['loggedin'])) {
-	header('Location: index.html');
-	exit;
-}
+    if (!isset($_SESSION['loggedin'])) {
+        header('Location: index.html');
+        exit;
+    }
 ?>
 
 <?php
@@ -62,8 +61,9 @@ if (!isset($_SESSION['loggedin'])) {
     $categorias = $db->get_categories();
 ?>
     <header>
-        <h1>ADMINISTRADOR</h1>
-        <a href="logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a>
+        <h1>Panel de administración</h1>
+        <a href="logout.php"><i class="fas fa-sign-out-alt"></i>Cerrar sesión</a>
+        <a href="ads.php">Administrar anuncios</a>
     </header>
 
     <div id="form-container">

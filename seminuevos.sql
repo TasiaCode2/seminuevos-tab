@@ -33,7 +33,8 @@ CREATE TABLE `anuncio` (
   `precio` float NOT NULL,
   `kilometraje` int(11) NOT NULL,
   `categoria` tinyint(4) NOT NULL,
-  `info` varchar(500) NOT NULL
+  `info` varchar(500) NOT NULL,
+  `en_venta` BOOLEAN NOT NULL DEFAULT TRUE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------

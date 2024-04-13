@@ -69,7 +69,7 @@
             ?>
                 <div class="card-product">
                     <div class="container-img">
-                        <img src="<?php echo $link;?>" alt="mustang" />
+                        <img src="<?php echo $link;?>" alt="<?php echo $titulo;?>" />
                     </div>
                     <div class="content-card-product">
                         <h3><?php echo $titulo;?></h3>
