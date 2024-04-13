@@ -30,11 +30,12 @@ SET time_zone = "+00:00";
 CREATE TABLE `anuncio` (
   `id` int(11) NOT NULL,
   `titulo` varchar(30) NOT NULL,
+  `modelo` int(4) NOT NULL,
   `precio` float NOT NULL,
   `kilometraje` int(11) NOT NULL,
   `categoria` tinyint(4) NOT NULL,
   `info` varchar(500) NOT NULL,
-  `en_venta` BOOLEAN NOT NULL DEFAULT TRUE
+  `en_venta` boolean NOT NULL DEFAULT TRUE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------

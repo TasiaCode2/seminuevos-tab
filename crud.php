@@ -34,8 +34,9 @@
             return $res; 
         }
 
-        public function create_ad($title, $price, $mileage, $cat, $info){
-            $sql = "INSERT INTO `anuncio` (titulo, precio, kilometraje, categoria, info) VALUES ('$title', '$price', '$mileage', '$cat', '$info')";
+        public function create_ad($title, $model, $price, $mileage, $cat, $info){
+            $sql = "INSERT INTO `anuncio` (titulo, modelo, precio, kilometraje, categoria, info)
+            VALUES ('$title', '$model', '$price', '$mileage', '$cat', '$info')";
             
             try {
                 $res = mysqli_query($this->con, $sql); 
@@ -54,7 +55,6 @@
         public function get_all_ads(){ 
             $sql = "SELECT a.id, a.titulo, a.en_venta, lf.link FROM anuncio a JOIN link_foto lf ON a.id = lf.anuncio_id";  
             $res = mysqli_query($this->con, $sql);  
-            // $rows = mysqli_fetch_object($res);  
             return $res ;  
         } 
         
@@ -62,10 +62,6 @@
             $sql = "UPDATE anuncio SET en_venta = 0 WHERE id=$id"; 
             $res = mysqli_query($this->con, $sql); 
 
-            // if($res){ 
-            //     return true; 
-            // }
-            // return false; 
             return $res;  
         } 
 
@@ -87,7 +83,7 @@
                 $minPrice = $filters['minPrice'];
                 $maxPrice = $filters['maxPrice'];
             
-                if ($filters['category'] > 0) {
+                if ($filters['category'] > 0) { // categoria 0 = todas las categorias
                     $category = $filters['category'];
                     $sql = $sql . " AND categoria = $category";
                 }
@@ -95,9 +91,27 @@
                 $sql = $sql . " AND precio BETWEEN $minPrice AND $maxPrice";
             }
 
-            // echo $sql;
             $res = mysqli_query($this->con, $sql);
             return $res;
+        }
+
+        public function get_ad_by_id($id) {
+            $sql = "SELECT a.id, a.titulo, a.modelo, a.precio, a.kilometraje, a.info, a.categoria, lf.link
+            FROM anuncio a JOIN link_foto lf ON a.id = lf.anuncio_id
+            WHERE a.id = $id";  
+            $res = mysqli_query($this->con, $sql);
+            return $res ;
+        }
+
+        public function update_ad($id, $title, $model, $price, $mileage, $category, $info) {
+            $sql = "UPDATE anuncio
+            SET titulo = '$title', modelo = $model, precio = $price,
+            kilometraje = $mileage, categoria = $category, info = '$info'
+            WHERE id = $id"; 
+
+            $res = mysqli_query($this->con, $sql); 
+
+            return $res;  
         }
     }
 ?>

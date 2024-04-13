@@ -58,7 +58,7 @@
                     value="<?php echo $enVenta ? "Marcar vendido" : "Vendido";?>"
                 >
                 </input>
-                <a href="" <?php echo $enVenta ? "" : "disabled";?>>Editar</a>
+                <a href="./update.php?idAd=<?php echo $id;?>" <?php echo $enVenta ? "" : "disabled";?>>Editar</a>
             </div>
         </form>
     <?php
