@@ -1,6 +1,13 @@
 <?php
 require('./vendor/autoload.php');
 
+// Crear la carpeta para guardar sesiones si no existe
+$dir = dirname( dirname(__FILE__) ) . '/tmp';
+if (!is_dir($dir)) {
+    mkdir($dir, 0775, true);
+}
+
+session_save_path($dir);
 session_start();
 
 $dotenv = Dotenv\Dotenv::createImmutable('./');
